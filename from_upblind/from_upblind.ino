@@ -7,7 +7,7 @@ int shredPin = 2;
 
 void setup()
 {
-  Serial.begin(300);
+  Serial.begin(9600);
   pinMode(shredPin, OUTPUT);
 
 }
