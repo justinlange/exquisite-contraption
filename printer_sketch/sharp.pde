@@ -20,11 +20,8 @@ ArrayList vecArray;
 
 PShape s;
 
-  Poster
+  Poster(){
 
-  size(round(print_width * make_bigger), round(print_height * make_bigger));
-  String saveString = "data/" + year() + month() + day() + hour() + minute() + second() + "_grab.pdf";  
-  beginRecord(PDF, saveString); 
   background(blackClamp);
   smooth();
   strokeWeight(.1);
@@ -134,10 +131,6 @@ endShape();
 
 PVector sharpCenter = new PVector(width*gmr, height*gmr);
 
-
-
-
-
 for(int i=100; i>1; i-=10){
   
   stroke(255);
@@ -202,7 +195,6 @@ for(int i = 0; i < numSteps; i++){
 //myShard = new Shard(width*gmr, height*gmr);
 //myShard.display();
  
-  endRecord();
 }
 
 void secondAttempt(){
@@ -236,4 +228,5 @@ vecArray = new ArrayList<PVector>();
     
     translate(width*gmr,height*gmr);
     endShape(); 
+}
 }

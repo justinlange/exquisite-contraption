@@ -23,7 +23,8 @@ class Shard {
     // The "original" locations of the vertices make up a circle
     original = new ArrayList<PVector>();
     for (float a = 0; a < TWO_PI; a+=0.2) {
-      PVector v = PVector.fromAngle(a);
+      PVector v = new PVector(0.0,0.0);
+      v.rotate(a);
       v.mult(100);
       original.add(v);
     }
