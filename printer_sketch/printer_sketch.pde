@@ -24,6 +24,7 @@ Timer shredder;
 Timer turnOff;
 
 
+
 void setup()
 {
 
@@ -87,8 +88,10 @@ void savePDF() {
   //draw content to be printed PDF
 
   text("print me", 100, 200);  
-
-
+  
+  background(255);
+  fill(0);
+  rect(100,100,300,300);
 
   endRecord();
   rubeIn = false;

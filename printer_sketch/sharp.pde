@@ -21,6 +21,9 @@ ArrayList vecArray;
 PShape s;
 
   Poster(){
+  }
+  
+  void make(){
 
   background(blackClamp);
   smooth();
@@ -115,7 +118,7 @@ for(int i=0; i<vecArray.size()-4; i++){
   v1.mult(m);
   v2.mult(m);
   */
-  println(vv.x,vv.y);
+  //println(vv.x,vv.y);
   triangle(vv.x,vv.y,v1.x,v1.y,v2.x,v2.y);
   //rotateY(radians(2));
   rotateX(radians(random(0,30)));
@@ -140,13 +143,14 @@ for(int i=100; i>1; i-=10){
 
   float inc = TWO_PI/3;
    for (float a = 0; a < TWO_PI; a+=inc) {
-      PVector v = PVector.fromAngle(a);
+      PVector v = new PVector(0.0,0.0);
+      v.rotate(a);
       //v.mult(random(3,300));
       
 
       v.mult(i);
       vertex(v.x,v.y);
-      PVector r = PVector.random2D();
+      PVector r = new PVector(random(0,1),random(0,1));
       r.mult(i);
       vertex(r.x,r.y);
 
@@ -205,7 +209,8 @@ vecArray = new ArrayList<PVector>();
     float inc = 0.1;
     
     for (float a = 0; a < TWO_PI+inc; a+=inc) {
-      PVector v = PVector.fromAngle(a);
+      PVector v = new PVector(0,0);
+      v.rotate(a);
       v.mult(100);
       vecArray.add(v);
     }

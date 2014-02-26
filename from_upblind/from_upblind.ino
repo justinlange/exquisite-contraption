@@ -3,7 +3,7 @@
  */
 
 
-int shredPin = 2;
+int shredPin = 5;
 
 void setup()
 {
@@ -30,15 +30,17 @@ void loop()
       doStuff = false; 
       break;
     }
+    
+    delay(5);
 
     if(doStuff){
       digitalWrite(shredPin, LOW);
-      Serial.println("shredding");
+      //Serial.println("shredding");
     }else{
       digitalWrite(shredPin, HIGH);
-      Serial.println("nope...");
+      //Serial.println("nope...");
     } 
- 
+  Serial.flush(); 
   }
 
 }

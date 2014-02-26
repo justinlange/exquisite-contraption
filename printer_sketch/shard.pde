@@ -30,15 +30,15 @@ class Shard {
     }
     
     // Now make the PShape with those vertices
-    s = createShape();
-    s.beginShape();
+    s = createShape(POLYGON);
+   // s.beginEndContour();
     s.fill(127);
     s.stroke(0);
     s.strokeWeight(2);
     for (PVector v : original) {
       s.vertex(v.x, v.y);
     }
-    s.endShape(CLOSE);
+    //s.endShape();
   }
 
  
