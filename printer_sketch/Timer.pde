@@ -7,7 +7,7 @@ class Timer{
   Timer(long _timerSeconds){ 
     timerSeconds = _timerSeconds;
     init = false;
-    println("timer construct");
+    //println("timer construct");
   }
   
   void init(){
