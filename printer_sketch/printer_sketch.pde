@@ -34,7 +34,13 @@ String[] index =
 {
   "a", "device", "that", "action", "track", "comma", "crushing", "object", "to", "result"
 };
-String directory = "/Users/justin/code/flux-factory/printer_sketch/strings/";
+//MBPr
+//String directory = "/Users/justin/code/flux-factory/printer_sketch/strings/";
+
+//mbp 17" directory
+String directory = "/Users/Justin/flux-factory/exquisite-contraption/printer_sketch/strings/";
+
+
 String outputString = " ";
 
 //A @device that @actionPartA @track @destructiveAction @object to @finalAction
@@ -99,8 +105,6 @@ void setup()
 void draw() {
 
   background(0);
-  text("rubeIn state: " + rubeIn, 10, 130);
-  text("rubeOut state: " + rubeOut, 10, 100);
 
   if (rubeIn) {
     savePDF();
