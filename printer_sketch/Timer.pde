@@ -20,8 +20,11 @@ class Timer{
   boolean trigger(){
     if(!init) return false;
     long result = millis() -startMillis;
-    println("result: " + result);
-    if(result > (timerSeconds * 1000)) return true;
+    //println("result: " + result);
+    if(result > (timerSeconds * 1000)) {
+      init = false;
+      return true;
+    }
       return false;
   }
 

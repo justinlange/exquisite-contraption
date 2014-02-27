@@ -18,9 +18,12 @@ boolean rubeIn = false;
 //state to control the arduino writing HIGH to the relay, which turns on the shredder
 boolean rubeOut = false; 
 
-boolean debug = false;
+boolean keyInput = false;
+boolean consoleWrite = false;
 
-Timer shredder;
+
+
+Timer shredderTimer;
 Timer turnOff;
 
 
@@ -38,69 +41,75 @@ void setup()
   //String portName = "/dev/tty.usbmodem1421";
   myPort = new Serial(this, portName, 9600);
 
-  //comment next line out to turn debug mode OFF
-  debug = true;
+  //comment next line out to turn keyboard input mode OFF
+  keyInput = true;
 
-  shredder = new Timer(delayLength);
-  turnOff = new Timer(15);
-
+  shredderTimer = new Timer(17);
+  turnOff = new Timer(5);
 }
 
 
 void draw() {
 
   background(0);
-  text("Last Received: " + inByte, 10, 130);
-  text("Last Sent: " + whichKey, 10, 100);
+  text("rubeIn state: " + rubeIn, 10, 130);
+  text("rubeOut state: " + rubeOut, 10, 100);
 
   if (rubeIn) {
     savePDF();
-    shredder.init();
+    shredderTimer.init();
   }
 
-  if(shredder.trigger()){
+  if (shredderTimer.trigger()) {
     rubeOut = true;
+  }
+
+  if (rubeOut) {
+    println("shredding");
+    myPort.write('s');
+    rubeOut = false;    
     turnOff.init();
   }
-  
-  if(turnOff.trigger()) myPort.write('s');
 
-  if (rubeOut) shred();
+  if (turnOff.trigger()) {
+      println("stop shredding");
+      myPort.write('t');
+  }
 }
 
-
-
-void shred() {
-  println("shredding");
-  myPort.write('s');
-  rubeOut = false;
-}
 
 
 void serialEvent(Serial myPort) {
   inByte = myPort.read();
+  println(inByte);
+  if (inByte == 105) {
+    rubeIn = true;
+    myPort.clear();
+  }
 }
 
 void savePDF() {
+  pushStyle();
   String saveString = "data/" + year() + month() + day() + hour() + minute() + second() + "_grab.pdf";  
   beginRecord(PDF, saveString); 
 
   //draw content to be printed PDF
 
   text("print me", 100, 200);  
-  
+
   background(255);
   fill(0);
-  rect(100,100,300,300);
+  rect(100, 100, 10, 10);
 
   endRecord();
   rubeIn = false;
+  popStyle();
 }
 
 
 
 void keyReleased() {
-  if (debug) {
+  if (keyInput) {
     if (key == 'i') {
       rubeIn = true;
       println("rubeIn: " + rubeIn);
