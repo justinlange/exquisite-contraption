@@ -26,10 +26,24 @@ boolean consoleWrite = false;
 Timer shredderTimer;
 Timer turnOff;
 
+String heading[];
+
+String device[] = loadStrings("/Users/justin/code/flux-factory/printer_sketch/strings/device.txt");
+String action[];
+String track[];
+String crushing[];
+String object[];
+String result[];
+
 
 
 void setup()
 {
+  
+  println("there are " + device.length + " lines");
+for (int i = 0 ; i < device.length; i++) {
+  println(device[i]);
+}
 
   size(round(print_width * make_bigger), round(print_height * make_bigger));
 

@@ -1,0 +1,5 @@
+A @device that @actionPartA @track @destructiveAction @object to @finalAction
+
+
+"Idea number #258:"
+"First protoype: "
