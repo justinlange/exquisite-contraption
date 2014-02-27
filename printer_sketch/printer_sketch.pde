@@ -2,7 +2,7 @@
 import processing.pdf.*;
 import processing.serial.*;
 
-
+long ideaCount;
 int delayLength = 15;
 
 Serial myPort;      // The serial port
@@ -40,8 +40,7 @@ String[] index =
 //mbp 17" directory
 String directory = "/Users/Justin/flux-factory/exquisite-contraption/printer_sketch/strings/";
 
-
-String outputString = " ";
+String[] tStringArray;
 
 //A @device that @actionPartA @track @destructiveAction @object to @finalAction
 
@@ -49,6 +48,10 @@ String outputString = " ";
 
 void setup()
 {
+  //println(PFont.list());
+
+
+  
   madlibs = new ArrayList<String[]>();
 
   //load each text file into its own String[] that lives in the ArrayList madlibs
@@ -57,6 +60,8 @@ void setup()
     String[] tString = loadStrings(nameString);
     madlibs.add(tString);
   }
+  
+
   //for debugging only -- just to make sure we can access this text
   for (int i =0; i< madlibs.size(); i++) {
     String[] tString = madlibs.get(i);   
@@ -64,8 +69,10 @@ void setup()
     }
   }     
 
-  String[] tStringArray = new String[madlibs.size()];
+  tStringArray = new String[madlibs.size()];
   //now, let's set up a random quote
+  
+  /*
   for (int i =0; i< madlibs.size(); i++) {
     String[] tString = madlibs.get(i);
     int arraySize = tString.length;
@@ -79,14 +86,17 @@ void setup()
   }
   println(outputString);
 
+*/
+  rubeGoldberg();
 
 
 
 
+  //size(round(print_width * make_bigger), round(print_height * make_bigger));
+  size(425,550);
 
-  size(round(print_width * make_bigger), round(print_height * make_bigger));
-
-  PFont myFont = createFont(PFont.list()[2], 14);
+  PFont myFont = createFont(PFont.list()[2], 40);
+  //PFont myFont = loadFont("/Users/Justin/flux-factory/exquisite-contraption/printer_sketch/EuphemiaCASBold.ttf");
   textFont(myFont);
 
   // List all the available serial ports:
@@ -98,13 +108,13 @@ void setup()
   keyInput = true;
 
   shredderTimer = new Timer(17);
-  turnOff = new Timer(5);
+  turnOff = new Timer(10);
 }
 
 
 void draw() {
 
-  background(0);
+  background(255);
 
   if (rubeIn) {
     savePDF();
@@ -130,7 +140,12 @@ void draw() {
 }
 
 void drawText(){
-    text(outputString,width*.2,height*.2,width - (width*.2),height);
+  
+  //textLeading() -- look into this...
+  fill(0);
+  //rectMode(CENTER);
+  textAlign(CENTER,TOP);
+  text(rubeGoldberg(),width*.1,height*.1,width - (width*.2),height);
 }
   
 
@@ -144,30 +159,35 @@ void serialEvent(Serial myPort) {
 }
 
 void savePDF() {
-  pushStyle();
   String saveString = "data/" + year() + month() + day() + hour() + minute() + second() + "_grab.pdf";  
   beginRecord(PDF, saveString); 
-
-  //draw content to be printed PDF
-  background(255);
-  fill(0);
-
-  
   drawText();
-
-/*
-  String[] splitString = outputString.split("\\b", 8);
-
-  for (int i=0;i<splitString.length; i++) {
-    text(splitString[i], 100, 100 + i*40);  
-  }
-
- // text(outputString.substring(0, lineLength*i), 100, 200);
-*/
-
   endRecord();
   rubeIn = false;
-  popStyle();
+}
+
+
+String rubeGoldberg(){
+  ideaCount++;
+    String outputString = " ";
+
+   for (int i =0; i< madlibs.size(); i++) {
+    String[] tString = madlibs.get(i);
+    int arraySize = tString.length;
+    float randomFloat = random(0, arraySize);
+    int randomIndex = floor(randomFloat);
+    tStringArray[i] = new String(tString[randomIndex]);
+  }
+  
+
+  for (int i=0;i<tStringArray.length; i++) {
+    outputString = outputString + (tStringArray[i]);
+  }
+   
+  println(outputString); 
+  return outputString;
+  
+  
 }
 
 
@@ -183,6 +203,9 @@ void keyReleased() {
     }
     else if (key == 't') {
       myPort.write('t');
+    }
+    else if (key == 'g'){
+      rubeGoldberg();
     }
   }
 }
