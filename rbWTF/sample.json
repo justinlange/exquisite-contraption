@@ -1,0 +1,108 @@
+{
+    "heading": [
+        "Awesomeness:",
+        "In my next life I'm"
+    ],
+
+    "response": [
+        "Already fucking seen one",
+        "Give me a-fucking-nother one",
+        "Don't really give a fuck"
+    ],
+
+    "template": [
+        "1 - @device that @actionPartA @preposition @@object @adjective @track, @destructiveAction @object to @finalAction",
+        "2 - @device that @actionPartA @track, @destructiveAction @object to @finalAction"
+
+
+
+    ],
+
+    "device": [
+        "trebuchet",
+        "domino set",
+        "kazoo",
+        "pinko machine",
+        "toy car"
+
+    ],
+
+    "actionPartA": [
+        "flips pancakes",
+        "pushes a golf club",
+        "scares a bird off",
+        "kicks a puppy",
+        "bowls a ball",
+        "fires a potato",
+        "knocks over a bucket",
+        "shoots a marble",
+        "lights a candle",
+        "rolls a tire",
+        "drops a oboe"
+        
+    ],
+
+    "preposition": [
+        "over",
+        "into",
+        "onto",
+        "out of the way of",
+        "that shoves",
+        "mixes into"
+    ],
+
+
+    "track": [
+        "down a banister",
+        "on a toy racetrack",
+        "down a slip 'n slide",
+        "into pile of stuffed animals"
+    ],
+
+        "adjective": [
+        "a slippery",
+        "a cardboard",
+        "a descending",
+        "a wobbly",
+        "a greesed"
+
+    ],
+
+
+    "destructiveAction": [
+        "crushing",
+        "mashing",
+        "exploding" ,
+        "detonating" 
+
+    ],
+
+    "object": [
+        "an electric eel",
+        "set off a rocket launcher",
+        "weather balloon",
+        "explosive charges",
+        "a stack of pancakes",
+        "a bird",
+        "a tire iron",    
+        "a line of toy soldiers"
+
+
+    ],
+
+    "finalVerb": [
+        "send",
+        "make",
+        "give",
+        "deliver"
+    ],
+
+    "finalAction": [
+        "send Bill Clinton a postcard",
+        "bake our roomates a pie",
+        "shake salt on an ommlet"
+
+    ]
+
+
+}
